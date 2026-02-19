@@ -218,7 +218,7 @@ export const AIInsightsSidebar = () => {
                   </div>
                   
                   {/* BIG PRICE */}
-                  <h4 className="text-3xl font-mono font-black text-white tracking-tighter">
+                  <h4 className="text-2xl font-mono font-black text-white tracking-tighter">
                     ${block.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </h4>
                 </div>
@@ -230,16 +230,12 @@ export const AIInsightsSidebar = () => {
                     {block.isUp ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
                     {block.change}
                   </div>
-                  <span className="text-[10px] text-white/10 font-black uppercase tracking-widest">Live Delta</span>
+                  <span className="text-[10px] text-white/10 font-black uppercase tracking-widest">Live Change</span>
                 </div>
               </div>
             </div>
           </motion.div>
         ))}
-      </div>
-
-      <div className="mt-8 text-center opacity-20">
-          <span className="text-[9px] font-black uppercase tracking-[0.6em] text-cyan-500">Neural Terminal</span>
       </div>
     </div>
   );
