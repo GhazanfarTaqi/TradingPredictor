@@ -3,8 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from .trading_engine import getPrediction
+from .TradingChart import getPrediction
 from .TradingNews import getNewsArticles,getAnalysisofNews
+from .esemble import getFinalDecision
 # Create your views here.
 
 class getAnalysisView(APIView):
@@ -20,6 +21,7 @@ class getAnalysisView(APIView):
             return Response(result, status=status.HTTP_200_OK)
                 
         except Exception as e:
+            print("ERROR:", e)
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class getNewsView(APIView):
@@ -41,5 +43,17 @@ class getNewsAnalysisView(APIView):
             if aiResponse == None:
                 return Response(aiResponse, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             return Response(aiResponse, status=status.HTTP_200_OK )  
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+class FusionPredictionAPIView(APIView):
+    """
+    Returns optimal trading decision by combining
+    technical + sentiment engines.
+    """
+    def get(self, request):
+        try:
+            finalDecision = getFinalDecision()
+            return Response(finalDecision, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)

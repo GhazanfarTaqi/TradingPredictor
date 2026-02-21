@@ -58,28 +58,34 @@ def ask_news_oracle(news_headlines):
 
     # 2. Update the System Prompt for Sentiment & Impact
     system_prompt = """
-    You are an expert Financial News Analyst AI. 
-    Analyze the headlines provided for Gold (XAUUSD).
-    
-    STRATEGY RULES:
-    1. BUY if news is overwhelmingly bullish (positive sentiment > 0.7).
-    2. SELL if news is overwhelmingly bearish (negative sentiment < -0.7).
-    3. WAIT if news is mixed, neutral, or irrelevant.
-    
-    OUTPUT FORMAT:
-    Strict JSON only. 
-    {
-        "decision": "BUY" or "SELL" or "WAIT",
-        "sentiment_score": float (-1.0 to 1.0),
-        "impact_duration": "SHORT-TERM" or "LONG-TERM",
-        "reasoning": "Explain based on the news",
-        "key_event": "The specific headline driving this decision"
-    }
-    """
+        You are a Macro-Economic Sentiment Analyst AI for Gold (XAUUSD). 
+        Analyze the provided headlines to determine the current 'Market Bias'.
+
+        SCORING LOGIC:
+        - BULLISH (Score 0.5 - 1.0): Fed rate cuts, high inflation, geopolitical instability, or USD weakness.
+        - BEARISH (Score 0.5 - 1.0): Fed rate hikes, lower-than-expected inflation, USD strength.
+        - NEUTRAL (Score 0.0): Conflicting headlines or no high-impact data.
+
+        OUTPUT RULES:
+        - Return ONLY valid JSON.
+        - 'sentiment_score' is a positive float (0.0 to 1.0) representing the strength of the news.
+        - 'bias' must be "BULLISH", "BEARISH", or "NEUTRAL".
+
+        {
+            "module": "SENTIMENT",
+            "bias": "string",
+            "sentiment_score": float,
+            "impact_duration": "SHORT-TERM" or "LONG-TERM",
+            "key_catalyst": "The single most important news headline",
+            "reasoning": "Briefly connect the news to gold price direction",
+            "Top News":"These are the Three News titles from the data which I have given you which have the most impact on the market and on your decision"
+        }
+        """
 
     try:
         completion = client.chat.completions.create(
-            model="openai/gpt-oss-120b",
+            model="llama-3.1-8b-instant", # Using the fast model
+            # model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": market_context}

@@ -23,6 +23,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 MT5_LOGIN = os.getenv("MT5_LOGIN")
 MT5_PASSWORD = os.getenv("MT5_PASSWORD")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+TWELVE_DATA_API_KEY = os.getenv("TWELVE_DATA_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,7 +52,8 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'rest_framework_simplejwt',
-    'corsheaders'
+    'corsheaders',
+    'django_q',
 ]
 
 MIDDLEWARE = [
@@ -95,6 +97,14 @@ DATABASES = {
     }
 }
 
+# Configure Django Q2 to use your database
+Q_CLUSTER = {
+    'name': 'my_project_cluster',
+    'workers': 4,
+    'timeout': 50,      # Give tasks 50s to finish
+    'retry': 60,        # Retry after 60s if it fails
+    'orm': 'default',   # Use your existing DB as the broker
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

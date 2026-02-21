@@ -1,13 +1,32 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note
+from .models import ChartTradingAnalysis, NewsTradingAnalysis
 
-class UserSerializer(serializers.ModelSerializer):
+class ChartTradingAnalysisSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ["id", "username", "password"]
-        extra_kwargs = {"password":{"write_only":True}}
+        model = ChartTradingAnalysis
+        fields = [
+            "module",
+            "signal", 
+            "confidence_score", 
+            "trade_entry" ,
+            "trade_sl", 
+            "trade_tp", 
+            "reasoning",
+            "pattern",
+            "created_at",
+        ]
+        extra_kwargs = {"author":{"read_only":True}}
 
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+class NewsTradingAnalysis(serializers.ModelSerializer):
+    class Meta:
+        model = NewsTradingAnalysis
+        fields = [
+            "bias",
+            "sentiment_score",
+            "impact_duration",
+            "key_catalyst",
+            "reasoning",
+            "top_news",
+            "created_at",
+        ]
+        extra_kwargs = {"author":{"read_only":True}}
