@@ -7,7 +7,6 @@ import { Header } from "@/components/dashboard/Header";
 import { Dashboard } from "@/pages/Dashboard";
 import { Analytics } from "@/pages/Analytics";
 import { Signals } from "@/pages/Signals";
-import { Portfolio } from "@/pages/Portfolio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -37,7 +36,6 @@ const App = () => (
           <Route path="/" element={<Layout><Dashboard /></Layout>} />
           <Route path="/analytics" element={<Layout><Analytics /></Layout>} />
           <Route path="/signals" element={<Layout><Signals /></Layout>} />
-          <Route path="/portfolio" element={<Layout><Portfolio /></Layout>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

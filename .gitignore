@@ -1,4 +1,8 @@
 venv
 backend/.env
+<<<<<<< HEAD
 frontend/node_modules
 frontend/.env
+=======
+Frontend/node_modules
+>>>>>>> 6ea5656bea2b059cb8b28fe54d4a096833d4bc4f

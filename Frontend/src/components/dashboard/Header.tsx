@@ -17,8 +17,7 @@ export const Header = ({ marketStatus }: HeaderProps) => {
   const navItems = [
     { to: "/", label: "Dashboard" },
     { to: "/analytics", label: "Analytics" },
-    { to: "/signals", label: "Signals" },
-    { to: "/portfolio", label: "Portfolio" },
+    { to: "/signals", label: "Signals" }
   ];
 
   return (
