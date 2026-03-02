@@ -7,4 +7,9 @@ PyJWT
 pytz
 python-dotenv
 requests
+<<<<<<< Updated upstream
 django-q2
+=======
+groq
+pandas_ta
+>>>>>>> Stashed changes
