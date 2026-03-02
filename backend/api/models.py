@@ -11,7 +11,12 @@ class ChartTradingAnalysis(models.Model):
     reasoning = models.TextField()
     pattern = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
+    exit_price = models.FloatField(null=True, blank=True)
+    accuracy_status = models.CharField(
+    max_length=20, 
+    choices=[('Pending', 'Pending'), ('Won', 'Won'), ('Lost', 'Lost')],
+    default='Pending')
+    
     class Meta:
         ordering = ["-created_at"]
         indexes = [
@@ -54,3 +59,5 @@ class NewsTradingAnalysis(models.Model):
 
     
 
+
+# Inside your model (e.g., ChartTradingAnalysis or FinalPrediction)

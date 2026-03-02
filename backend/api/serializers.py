@@ -13,7 +13,8 @@ class ChartTradingAnalysisSerializer(serializers.ModelSerializer):
             "trade_tp", 
             "reasoning",
             "pattern",
-            "created_at",
+            "created_at","exit_price",       # Add this
+            "accuracy_status",  # Add this
         ]
         extra_kwargs = {"author":{"read_only":True}}
 
