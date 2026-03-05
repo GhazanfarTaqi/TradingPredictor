@@ -78,7 +78,10 @@ def getFinalDecision():
         f"WeightedScore={final_score:.2f}"
     )
     AiReasoning = tech["reasoning"]
-
+    combined_reasoning = f"{techReason} {AiReasoning}"
+    
+    # Safely extract the pattern (checking the different keys Groq might use)
+    pattern_found = tech.get("pattern_identified", tech.get("pattern_detected", tech.get("pattern", "Unknown Pattern")))
     # -------------------------
     # 7. Return unified format
     # -------------------------
@@ -89,6 +92,6 @@ def getFinalDecision():
         "entry_price": tech.get("entry_price"),
         "stop_loss": tech.get("stop_loss"),
         "take_profit": tech.get("take_profit"),
-        "techReason": techReason,
-        "AiReasoning":AiReasoning
+        "reasoning": combined_reasoning,  # <-- FIXED KEY
+        "pattern": pattern_found
     }
