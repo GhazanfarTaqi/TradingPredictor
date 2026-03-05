@@ -1,4 +1,4 @@
-import MetaTrader5 as mt5
+# import MetaTrader5 as mt5
 from groq import Groq
 import pandas as pd
 import pandas_ta as ta  # Library for technical indicators
@@ -7,16 +7,16 @@ import time
 from datetime import datetime
 from django.conf import settings
 from twelvedata import TDClient
+import os
+from dotenv import load_dotenv
+from twelvedata import TDClient
 
-# ==========================================
-# 1. CONFIGURATION
-# ==========================================
-# MT5_LOGIN = settings.MT5_LOGIN  # Optional: Your Account ID (or leave 0 if MT5 is already open)
-# MT5_PASSWORD = settings.MT5_PASSWORD # Optional
-# MT5_SERVER = "MetaQuotes-Demo"     # Optional
-# TIMEFRAME = mt5.TIMEFRAME_M15  # 15-Minute Candles
-GROQ_API_KEY = settings.GROQ_API_KEY  # Get from console.groq.com
-TWELVE_DATA_API_KEY = settings.TWELVE_DATA_API_KEY
+# Force load the .env file
+load_dotenv()
+
+# Change how the keys are fetched to be more robust
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+TWELVE_DATA_API_KEY = os.getenv("TWELVEDATA_API_KEY")
 SYMBOL = "XAU/USD"
 TIMEFRAME = "15min"
 # Initialize Groq Client

@@ -4,17 +4,20 @@ from .models import ChartTradingAnalysis, NewsTradingAnalysis
 class ChartTradingAnalysisSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChartTradingAnalysis
-        fields = [
-            "module",
-            "signal", 
-            "confidence_score", 
-            "trade_entry" ,
-            "trade_sl", 
-            "trade_tp", 
-            "reasoning",
-            "pattern",
-            "created_at",
-        ]
+        fields = '__all__'
+
+        # fields = [
+        #     "module",
+        #     "signal", 
+        #     "confidence_score", 
+        #     "trade_entry" ,
+        #     "trade_sl", 
+        #     "trade_tp", 
+        #     "reasoning",
+        #     "pattern",
+        #     "created_at","exit_price",       # Add this
+        #     "accuracy_status",  # Add this
+        # ]
         extra_kwargs = {"author":{"read_only":True}}
 
 class NewsTradingAnalysis(serializers.ModelSerializer):
