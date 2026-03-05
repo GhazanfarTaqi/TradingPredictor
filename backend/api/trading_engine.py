@@ -1,6 +1,14 @@
+# # import pandas as pd
+# # from twelvedata import TDClient
+# # import pymongo
+# import MetaTrader5 as mt5
+# from groq import Groq
 # import pandas as pd
-# from twelvedata import TDClient
-# import pymongo
+# import pandas_ta as ta  # Library for technical indicators
+# import json
+# import time
+# from datetime import datetime
+# from django.conf import settings
 
 # # Initialize Connections
 # mongo_client = pymongo.MongoClient("mongodb://localhost:27017/")
